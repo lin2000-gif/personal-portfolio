@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --term-bg: #0d0208;
+  /* Darker, slightly purple/black background */
+  --term-text: #00ff41;
+  /* CRT Green */
+  --term-dim: #008F11;
+  /* Dim Green */
+  --term-blue: #00bfff;
+  /* Cyan/Blue for links/highlights */
+  --term-yellow: #fdfd96;
+  /* Pale Yellow */
+  --term-red: #ff4a4a;
+  --term-cursor: #00ff41;
+
+  font-family: 'Fira Code', 'Courier New', monospace;
+  line-height: 1.5;
+  font-weight: 500;
+  text-shadow: 0 0 4px rgba(0, 255, 65, 0.5);
+  /* Phosphor Glow */
+
+  color-scheme: dark;
+  color: var(--term-text);
+  background-color: var(--term-bg);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  /* Abstract MacOS Big Sur / Monterey style gradient */
+  background: linear-gradient(135deg,
+      #ffafbd 0%,
+      #ffc3a0 20%,
+      #2193b0 60%,
+      #6dd5ed 100%);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  overflow: hidden;
+  /* Hide scrollbars on desktop, window handles scrolling */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* CRT Effects moved to specific container */
+.crt-overlay {
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%,
+      rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg,
+      rgba(255, 0, 0, 0.06),
+      rgba(0, 255, 0, 0.02),
+      rgba(0, 0, 255, 0.06));
+  background-size: 100% 2px, 3px 100%;
+  background-size: 100% 2px, 3px 100%;
+}
+
+a {
+  color: var(--term-blue);
+  text-decoration: none;
+  text-shadow: 0 0 5px rgba(0, 191, 255, 0.6);
+}
+
+a:hover {
+  text-decoration: underline;
+  text-shadow: 0 0 8px rgba(0, 191, 255, 0.9);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--term-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--term-dim);
+  border: 1px solid var(--term-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--term-text);
+}
+
+.terminal-prompt {
+  color: var(--term-blue);
+  font-weight: bold;
+  margin-right: 0.8rem;
+  text-shadow: 0 0 5px rgba(0, 191, 255, 0.6);
+}
+
+.command-input {
+  background: transparent;
+  border: none;
+  color: var(--term-text);
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+  flex: 1;
+  text-shadow: inherit;
+  caret-color: var(--term-cursor);
+  /* Let's try native caret first with glow */
+}
+
+/* Optional: Subtle flicker animation */
+@keyframes flicker {
+  0% {
+    opacity: 0.97;
+  }
+
+  5% {
+    opacity: 0.95;
+  }
+
+  10% {
+    opacity: 0.9;
+  }
+
+  15% {
+    opacity: 0.95;
+  }
+
+  20% {
+    opacity: 0.99;
+  }
+
+  25% {
+    opacity: 0.95;
+  }
+
+  30% {
+    opacity: 0.9;
+  }
+
+  35% {
+    opacity: 0.96;
+  }
+
+  40% {
+    opacity: 0.98;
+  }
+
+  45% {
+    opacity: 0.95;
+  }
+
+  50% {
+    opacity: 0.99;
+  }
+
+  55% {
+    opacity: 0.93;
+  }
+
+  60% {
+    opacity: 0.9;
+  }
+
+  65% {
+    opacity: 0.96;
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  75% {
+    opacity: 0.97;
+  }
+
+  80% {
+    opacity: 0.92;
+  }
+
+  85% {
+    opacity: 0.96;
+  }
+
+  90% {
+    opacity: 0.98;
+  }
+
+  95% {
+    opacity: 0.94;
+  }
+
+  100% {
+    opacity: 0.98;
+  }
+}
+
+#root {
+  animation: flicker 0.15s infinite;
+  min-height: 100vh;
+}
