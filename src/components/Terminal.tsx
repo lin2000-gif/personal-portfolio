@@ -11,7 +11,11 @@ const Terminal = () => {
 
     // Initial typing effect state
     const [welcomeText, setWelcomeText] = useState('');
-    const fullWelcomeText = `
+
+    useEffect(() => {
+        const isMobile = window.innerWidth < 600;
+
+        const desktopArt = `
  ____            _                  _           
 |  _ \\ _ __ __ _| |_ _   _  __ _ __| |__   __ _ 
 | |_) | '__/ _\` | __| | | |/ _\` / __| '_ \\ / _\` |
@@ -20,15 +24,24 @@ const Terminal = () => {
                      |___/                       
 `;
 
-    useEffect(() => {
+        const mobileArt = `
+ ____  _  __
+|  _ \\| |/ /
+| |_) | ' / 
+|  __/| . \\ 
+|_|   |_|\\_\\
+`; // "PK" for mobile
+
+        const fullText = isMobile ? mobileArt : desktopArt;
+
         let i = 0;
         const intervalId = setInterval(() => {
-            setWelcomeText(fullWelcomeText.slice(0, i));
+            setWelcomeText(fullText.slice(0, i));
             i++;
-            if (i > fullWelcomeText.length) {
+            if (i > fullText.length) {
                 clearInterval(intervalId);
             }
-        }, 1); // Very fast typing for ASCII art
+        }, 1);
         return () => clearInterval(intervalId);
     }, []);
 
